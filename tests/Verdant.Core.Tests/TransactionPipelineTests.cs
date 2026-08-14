@@ -163,9 +163,8 @@ public sealed class TransactionPipelineTests
             TestCommand,
             MutableDeterministicState>(
                 new MutableState(10, ["existing"]),
-                sourceLog,
-                new MutableDeterministicState(100),
-                0);
+                new ActionLog<TestCommand>(sourceLog),
+                new MutableDeterministicState(100));
         var adapter = new TestAdapter();
         var pipeline = CreatePipeline(adapter);
 
@@ -237,9 +236,8 @@ public sealed class TransactionPipelineTests
         MutableDeterministicState> CreateAuthority() =>
         new(
             new MutableState(10, ["existing"]),
-            Array.Empty<TestCommand>(),
-            new MutableDeterministicState(100),
-            0);
+            new ActionLog<TestCommand>(Array.Empty<TestCommand>()),
+            new MutableDeterministicState(100));
 
     private static TransactionPipeline<
         MutableState,
