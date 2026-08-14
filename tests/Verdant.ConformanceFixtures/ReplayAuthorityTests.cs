@@ -186,6 +186,28 @@ public sealed class ReplayAuthorityTests
         Assert.Equal(2, adapter.ExecutionCount);
     }
 
+
+    [Fact]
+    public void ReplayRequestCopiesCallerOwnedMutableHistoryIntoAuthority()
+    {
+        var mutableLog = new List<TestCommand>
+        {
+            new(2),
+            new(3)
+        };
+        var request = new ReplayRequest<int, TestCommand>(
+            10,
+            mutableLog,
+            mutableLog.Count);
+
+        mutableLog[0] = new TestCommand(99);
+        mutableLog.Add(new TestCommand(5));
+
+        Assert.Equal(2, request.ActionLog.Count);
+        Assert.Equal([2, 3], request.ActionLog.Select(item => item.Delta));
+        Assert.Equal(2, request.ActionCount);
+    }
+
     [Fact]
     public void ReplayDoesNotModifySuppliedActionLog()
     {

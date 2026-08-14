@@ -81,14 +81,7 @@ public sealed class TransactionPipeline<
                 _adapter.SnapshotDeterministicState(
                     accepted.DeterministicState);
             var committedEvents = accepted.Events.ToArray();
-            var committedLog = new TCommand[authority.ActionLog.Count + 1];
-
-            for (var index = 0; index < authority.ActionLog.Count; index++)
-            {
-                committedLog[index] = authority.ActionLog[index];
-            }
-
-            committedLog[^1] = command;
+            var committedLog = authority.ActionLog.Append(command);
 
             var committedAuthority = new TransactionAuthority<
                 TState,
@@ -96,8 +89,7 @@ public sealed class TransactionPipeline<
                 TDeterministicState>(
                     committedState,
                     committedLog,
-                    committedDeterministicState,
-                    checked(authority.ActionCount + 1));
+                    committedDeterministicState);
 
             return new TransactionOutcome<
                 TState,
