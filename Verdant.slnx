@@ -1,12 +1,14 @@
 <Solution>
   <Folder Name="/src/">
     <Project Path="src/Verdant.Core/Verdant.Core.csproj" />
+    <Project Path="src/Verdant.History/Verdant.History.csproj" />
     <Project Path="src/Verdant.Replay/Verdant.Replay.csproj" />
     <Project Path="src/Verdant.Topology/Verdant.Topology.csproj" />
   </Folder>
   <Folder Name="/tests/">
     <Project Path="tests/Verdant.ConformanceFixtures/Verdant.ConformanceFixtures.csproj" />
     <Project Path="tests/Verdant.Core.Tests/Verdant.Core.Tests.csproj" />
+    <Project Path="tests/Verdant.History.Tests/Verdant.History.Tests.csproj" />
     <Project Path="tests/Verdant.Topology.Tests/Verdant.Topology.Tests.csproj" />
   </Folder>
 </Solution>
