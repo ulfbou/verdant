@@ -7,5 +7,6 @@
   <Folder Name="/tests/">
     <Project Path="tests/Verdant.ConformanceFixtures/Verdant.ConformanceFixtures.csproj" />
     <Project Path="tests/Verdant.Core.Tests/Verdant.Core.Tests.csproj" />
+    <Project Path="tests/Verdant.Topology.Tests/Verdant.Topology.Tests.csproj" />
   </Folder>
 </Solution>
